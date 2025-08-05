@@ -4,11 +4,11 @@ class TicketBookingSystem {
 
     // Try to book a specific seat number
     public boolean bookSeat(int seatNumber, String user) {
-        synchronized (lock) {
-            if (seatNumber < 0 || seatNumber >= seats.length) {
+        if (seatNumber < 0 || seatNumber >= seats.length) {
                 System.out.println(user + " tried to book invalid seat " + seatNumber);
                 return false;
             }
+        synchronized (lock) {
             if (!seats[seatNumber]) {
                 seats[seatNumber] = true;
                 System.out.println(user + " successfully booked seat " + (seatNumber + 1));
@@ -20,3 +20,4 @@ class TicketBookingSystem {
         }
     }
 }
+
